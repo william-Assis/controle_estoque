@@ -1,0 +1,6 @@
+PyQt5
+gspread
+oauth2client
+pandas
+openpyxl
+bcrypt
