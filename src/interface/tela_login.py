@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QPushButto
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPalette, QColor, QPixmap, QFont, QIcon
 from os.path import join, dirname
-from ..utilitarios.estilo_global import aplicar_estilo_global
+from ..utilitarios.estilo_global import aplicar_estilo_global, ESTILO_INPUT, ESTILO_BOTAO
 
 class TelaLogin(QWidget):
     def __init__(self):
@@ -47,16 +47,8 @@ class TelaLogin(QWidget):
         
         # Configurando o padding interno do texto
         input_usuario.setTextMargins(30, 0, 0, 0)
-        # Configura a borda do input
-        input_usuario.setStyleSheet("""
-        QLineEdit { 
-            border-radius: 15px; 
-            border: none;
-            }
-            QLineEdit:focus {
-                border: 2px solid black;
-            }
-            """)
+        # Configurando o estilo do input_usuario
+        input_usuario.setStyleSheet(ESTILO_INPUT)
             
         # Criando o campo de entrada de senha
         input_senha = QLineEdit(self)
@@ -64,18 +56,10 @@ class TelaLogin(QWidget):
         input_senha.setPlaceholderText("SENHA")
         input_senha.setEchoMode(QLineEdit.Password)  # Para ocultar a senha
         
-        # Aplicando as mesmas configurações de estilo do input de usuário
+        # Configurando o estilo do input_senha
         input_senha.setFont(fonte)
         input_senha.setTextMargins(30, 0, 0, 0)
-        input_senha.setStyleSheet("""
-        QLineEdit { 
-            border-radius: 15px; 
-            border: none;
-            }
-            QLineEdit:focus {
-                border: 2px solid black;
-            }
-            """)
+        input_senha.setStyleSheet(ESTILO_INPUT)
         
         # Criando o botão ENTRAR
         self.botao_entrar = QPushButton('ENTRAR', self)
@@ -93,21 +77,7 @@ class TelaLogin(QWidget):
         self.icone_hover = QIcon(icone_path)
         
         # Configurando o estilo do botão
-        self.botao_entrar.setStyleSheet("""
-            QPushButton {
-                background-color: #3F3B3B;
-                color: #FFFFFF;
-                border-radius: 15px;
-                border: none;
-                padding: 0 20px;
-            }
-            QPushButton:hover {
-                background-color: #4F4B4B;
-            }
-            QPushButton:pressed {
-                background-color: #2F2B2B;
-            }
-        """)
+        self.botao_entrar.setStyleSheet(ESTILO_BOTAO)
         
         # Conectando o evento de hover
         self.botao_entrar.enterEvent = self.botao_hover_enter
@@ -117,35 +87,13 @@ class TelaLogin(QWidget):
         self.botao_entrar.setIcon(self.icone_hover)
         self.botao_entrar.setIconSize(QSize(24, 24))
         self.botao_entrar.setLayoutDirection(Qt.LeftToRight)
-        # Configurando o espaçamento do ícone
-        self.botao_entrar.setIconSize(QSize(24, 24))
-        self.botao_entrar.setStyleSheet("""
-            QPushButton {
-                background-color: #3F3B3B;
-                color: #FFFFFF;
-                border-radius: 15px;
-                border: none;
-                text-align: center;
-                padding: 0px;
-            }
-        """)
-        # Define a margem entre o ícone e o texto
+        self.botao_entrar.setStyleSheet(ESTILO_BOTAO)
         self.botao_entrar.setContentsMargins(0, 0, 0, 0)
-        # Configura o espaçamento do ícone
-        self.botao_entrar.setProperty("iconSpacing", 9)  # 9px de espaçamento entre ícone e texto
+        self.botao_entrar.setProperty("iconSpacing", 9)
 
     def botao_hover_leave(self, event):
         self.botao_entrar.setIcon(self.icone_normal)
-        self.botao_entrar.setStyleSheet("""
-            QPushButton {
-                background-color: #3F3B3B;
-                color: #FFFFFF;
-                border-radius: 15px;
-                border: none;
-                text-align: center;
-                padding: 0px;
-            }
-        """)
+        self.botao_entrar.setStyleSheet(ESTILO_BOTAO)
 
     def center(self):
         # Método para centralizar a janela na tela
