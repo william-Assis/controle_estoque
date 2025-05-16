@@ -2,7 +2,13 @@ from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QPushButto
 from PyQt5.QtCore import Qt, QSize
 from PyQt5.QtGui import QPalette, QColor, QPixmap, QFont, QIcon
 from os.path import join, dirname
-from ..utilitarios.estilo_global import aplicar_estilo_global, ESTILO_INPUT, ESTILO_BOTAO
+from ..utilitarios.estilo_global import (
+    aplicar_estilo_global, 
+    ESTILO_INPUT, 
+    ESTILO_BOTAO,
+    obter_fonte_input,
+    obter_fonte_botao
+)
 
 class TelaLogin(QWidget):
     def __init__(self):
